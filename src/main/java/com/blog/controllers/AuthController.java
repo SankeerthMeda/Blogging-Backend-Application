@@ -46,7 +46,7 @@ public class AuthController {
 		UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getUsername());
 		String token = this.jwtTokenHelper.generateToken(userDetails);
 		
-		// ab is token ko bhejna h
+		// send this token
 		JwtAuthResponse response = new JwtAuthResponse();
 		response.setToken(token);
 		return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);
