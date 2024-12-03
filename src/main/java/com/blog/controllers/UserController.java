@@ -48,7 +48,6 @@ public class UserController {
 	@PutMapping("/{userId}")
 	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") Integer uid)
 	{	
-		// agar naam same rakh rhe ho to pathVariable ke bracket me likhna jaroori nhi h.
 		UserDto updatedUser = this.userService.updateUser(userDto, uid);
 		return ResponseEntity.ok(updatedUser);
 	}

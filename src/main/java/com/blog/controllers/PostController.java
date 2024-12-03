@@ -45,7 +45,7 @@ public class PostController {
 	
 	// create
 	
-	@PostMapping("/user/{userId}/category/{categoryId}/posts")  // kon user, kis category me post kiya h
+	@PostMapping("/user/{userId}/category/{categoryId}/posts")
 	public ResponseEntity<PostDto> createPost (
 			@RequestBody PostDto postDto,
 			@PathVariable Integer userId,
@@ -132,31 +132,25 @@ public class PostController {
 	}
 	
 	// post image upload
-	// 'postid' lena hoga taki chale pta ye image kis post ka h.(isko url me pass karenge)
-	// image ko parameter me pass karenge.
-	
+
 	@PostMapping("/post/image/upload/{postId}")
 	public ResponseEntity<PostDto> uploadPostImage(
 			@RequestParam("image") MultipartFile image,
 			@PathVariable Integer postId
 			) throws IOException{
-		// get the post first. Agar nhi mila to yhi pe exception throw kar dega.
+		// get the post first.
 		PostDto postDto = this.postService.getPostById(postId);
 		
 		// get the fileName by which we have to save in database
 		String fileName = fileService.uploadImage(path, image);
-		
-		// ab isko database me save karna h.
-		
+
 		postDto.setImageName(fileName);
-		// ab save kar do update call karke
 		PostDto updatedPost = this.postService.updatePost(postDto, postId);
 		return new ResponseEntity<PostDto>(updatedPost, HttpStatus.OK);
 		
 	}
 	
 	// method to serve files
-	// must run in browser like : http://localhost:9090/file/profiles/image_name.jpg
 	// image_name you can find from folder directory or from user details.
 		
 		@GetMapping(value="/post/image/{imageName}" , produces = MediaType.IMAGE_JPEG_VALUE)
@@ -167,7 +161,7 @@ public class PostController {
 			
 			InputStream resource = this.fileService.getResource(path, imageName);
 			response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-			StreamUtils.copy(resource, response.getOutputStream()); // kisko , kahan bhejna h.
+			StreamUtils.copy(resource, response.getOutputStream());
 		}
 	
 	

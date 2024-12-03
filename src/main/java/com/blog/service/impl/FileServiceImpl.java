@@ -26,11 +26,10 @@ public class FileServiceImpl implements FileService {
 		// to distinguish the file when user uplaod file with same name
 		// add any random id to the file name
 				
-		// e.g: 'abc.png' h tb ye convert ho jayega 'randomID.png'.
+		// e.g: 'abc.png' convert to 'randomID.png'.
 				
 		String randomID = UUID.randomUUID().toString();
-		// dot se random wale ke saath add ho jayega
-		// uske naam nya filename jis naam se file save karenge
+
 		String fileName1 = randomID.concat(name.substring(name.lastIndexOf("."))); 				
 		
 		// get full path i.e folder and file name

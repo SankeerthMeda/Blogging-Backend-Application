@@ -24,17 +24,12 @@ import com.blog.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableWebMvc     // for swagger
 @EnableGlobalMethodSecurity(prePostEnabled = true)  // for role based authentication
 public class SecurityConfig {
 	
 	
 	public static final String[] PUBLIC_URLS = {
 			"/api/auth/**",
-			"/v3/api-docs",
-			"/v2/api-docs",
-			"/swagger-resources/**",
-			"/swagger-ui/**",
 			"/webjars/**"
 			
 	};

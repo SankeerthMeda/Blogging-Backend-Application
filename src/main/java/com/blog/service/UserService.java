@@ -15,8 +15,7 @@ public interface UserService {
 	// registering after spring security with all the details
 	UserDto registerNewUser(UserDto user);
 	
-	// user ka detail + kis user ko update karna h.
-	UserDto updateUser(UserDto user , Integer userId); 
+	UserDto updateUser(UserDto user , Integer userId);
 	
 	UserDto getUserById(Integer userId);
 	

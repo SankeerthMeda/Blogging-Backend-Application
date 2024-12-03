@@ -50,15 +50,6 @@ public class User implements UserDetails{
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
 	private List<Post> posts = new ArrayList<>();
 	
-	// many to many ke case me ek or table extra banega relation handle karne ke liye
-	// uska naam apne anusar rakhne ke liye '@JoinTable' use karenge.
-	// table ka kon sa field foreign key jaisa kam karega usko btane ke liye
-	// '@joinColumns' if writing in same class and 'inverseJoinColumns' if writing in different class.
-	
-	
-	// e.g: User class ka jo table bnega 'user' naam se bnega and iska 'id' field foreign key jaisa kam karega
-	// similaryly for 'Role' table
-	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name ="user_role",
 	joinColumns = @JoinColumn(name = "user", referencedColumnName = "id"),
@@ -69,6 +60,11 @@ public class User implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> authorities = this.roles.stream().map((role) -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 		return authorities;
+	}
+
+	@Override
+	public String getPassword() {
+		return null;
 	}
 
 	@Override

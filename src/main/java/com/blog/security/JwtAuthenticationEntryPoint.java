@@ -15,10 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	
-	// jb koi unauthorized user access karna chahega 'authorized' api ko 
-	// tb ye function call hoga.
-	// error bhejenge is fn ke through sb parameter ke help se.
-	
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {

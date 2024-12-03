@@ -62,7 +62,6 @@ public class UserServiceImpl implements UserService {
 		user.setAbout(userDto.getAbout());
 		user.setPassword(userDto.getPassword());
 		
-		// update karne ke bad user ko db me save kar do.
 		User updatedUser = this.userRepo.save(user);
 		
 		return this.userToDto(updatedUser);
@@ -78,8 +77,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserDto> getAllUsers() {
 		List<User> users = this.userRepo.findAll();
-		// hmko har ek user ko 'userDto' me convert karna hoga and usko return karna hoga list me.
-		
+
 		List<UserDto> userDtos = users.stream().map(user->this.userToDto(user)).collect(Collectors.toList());
 		
 		return userDtos;
@@ -137,7 +135,6 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
 		
 		// setting the roles to user
-		// nya user ko phle admin bnayenge
 		Role role = this.roleRepo.findById(AppConstants.NORMAL_USER).get();
 		
 		user.getRoles().add(role);

@@ -25,16 +25,13 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	// kya comment karna , kis post pe comment karna h.
 	@Override
 	public CommentDto createComment(CommentDto commentDto, Integer postId) {
 		
 		// 1st find the post 
 				Post post = this.postRepo.findById(postId)
 							.orElseThrow(()-> new ResourceNotFoundException("Post", "postId",postId));
-		
-		// is post pe hmko given 'comment' karna h. or comment ke under post ko add karna h.
-		// phle dto se comment me convert karna hoga.
+
 		Comment comment = this.modelMapper.map(commentDto, Comment.class);
 
 		comment.setPost(post);

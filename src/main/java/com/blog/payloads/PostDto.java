@@ -26,11 +26,10 @@ public class PostDto {
 	private Date addedDate;
 	
 	// taking 'dto' for category and 'user' to avoid infinite loop
-		// 'dto' me post nhi h but 'user' and 'category' me h .
 
-	private CategoryDto category; // post kis category ka h
+	private CategoryDto category;
 
-	private UserDto user; // post kis user ka h
+	private UserDto user;
 	
 	// to get all comments. using 'dto' to avoid infinite loop.
 	private Set<CommentDto> comments = new HashSet<>();  

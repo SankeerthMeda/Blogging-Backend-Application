@@ -97,7 +97,7 @@ public class PostServiceImpl implements PostService {
 		Sort sort = (sortDir.equalsIgnoreCase("asc")?Sort.by(sortBy).ascending():Sort.by(sortBy).descending());
 		
 		Pageable p = PageRequest.of(pageNumber, pageSize, sort); // getting the peagable object
-		Page<Post> pagePost = this.postRepo.findAll(p); // is object se help se us page ka details nikal sakte h.
+		Page<Post> pagePost = this.postRepo.findAll(p);
 		List<Post> allPosts = pagePost.getContent(); // to get all post on that page
 		
 		List<PostDto> postDtos = allPosts.stream().map((post)->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
@@ -146,7 +146,6 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public List<PostDto> searchPosts(String keyword) {
-		// agar 'title' me ye 'keyword' dikha to us post ko show kar dega.
 		List<Post>  posts = this.postRepo.findByTitleContaining(keyword);
 		List<PostDto> postDtos = posts.stream().map((post)->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 		return postDtos;

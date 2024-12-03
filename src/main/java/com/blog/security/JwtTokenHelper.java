@@ -12,8 +12,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-// token se related jitna bhi operation perform karna hoga 
-// isme rakhenge
 
 @Component
 public class JwtTokenHelper {

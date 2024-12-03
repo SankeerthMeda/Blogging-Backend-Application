@@ -32,8 +32,7 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter{
 			throws ServletException, IOException {
 		
 		// a ) get jwt token from request
-		// token header me aa rha hoga
-		
+
 		// 'Authorization' token ka key hoga.
 		// with help of this key we will get the token
 		// token will start from 'Bearer token...'
@@ -76,8 +75,6 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter{
 			
 			if(this.jwtTokenHelper.validateToken(token, userDetails))
 			{
-				// agar sb kuch sahi chal rha h. validation sahi h
-				// tb authentication karna h
 				
 				// 1st get the authentication object
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null , userDetails.getAuthorities());
